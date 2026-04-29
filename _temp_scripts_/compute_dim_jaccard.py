@@ -13,10 +13,10 @@ import torch
 
 # --- canonical GLN embeddings (sorted alphabetically by full name; matches runtime) ---
 GLN_FULL_NAMES = [
-    "AIAI/GREEKLEGALNERV2/GreekBERT/...",            # GreekBERT
-    "AIAI/GREEKLEGALNERV2/GreekLegalRoBERTa/...",    # GreekLegalRoBERTa
-    "AIAI/GREEKLEGALNERV2/cc.el.300.vec",            # FastText
-    "AIAI/GREEKLEGALNERV2/mdeberta-v3-base/seed_1",  # mDeBERTa
+    "DATASETS/GREEKLEGALNERV2/GreekBERT/...",            # GreekBERT
+    "DATASETS/GREEKLEGALNERV2/GreekLegalRoBERTa/...",    # GreekLegalRoBERTa
+    "DATASETS/GREEKLEGALNERV2/cc.el.300.vec",            # FastText
+    "DATASETS/GREEKLEGALNERV2/mdeberta-v3-base/seed_1",  # mDeBERTa
     "Char",                                           # Char
     "bpe-el-100000-300",                              # BPEmb
 ]

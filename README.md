@@ -72,12 +72,12 @@ while staying competitive with naïve concatenation.
 | **LegalNERo** | RO | 9,425 | 28.06 | 1.00 | ORG, TIME, LEGAL, LOC, PER |
 
 The pre-processed BIOES splits used by the experiments are shipped under
-`AIAI/`:
+`DATASETS/`:
 
 ```
-AIAI/GREEKLEGALNERV2/{train_v2,dev_v2,test_v2}.conll
-AIAI/InLNER/dataset/{train,dev,test}.txt
-AIAI/LegalNERO/dataset/{train,dev,test}.conll
+DATASETS/GREEKLEGALNERV2/{train_v2,dev_v2,test_v2}.conll
+DATASETS/InLNER/dataset/{train,dev,test}.txt
+DATASETS/LegalNERO/dataset/{train,dev,test}.conll
 ```
 
 The paths above match the `data_folder` entries in the YAML configs.
@@ -121,7 +121,7 @@ embedding are shared across datasets.
 │   ├── models/                    # BiLSTM-CRF task model
 │   └── ...
 ├── algorithms/, utils/, tools/, script/, tests/
-├── AIAI/                          # dataset text splits (no embedding weights)
+├── DATASETS/                          # dataset text splits (no embedding weights)
 │   ├── GREEKLEGALNERV2/{train_v2,dev_v2,test_v2}.conll
 │   ├── InLNER/dataset/{train,dev,test}.txt
 │   └── LegalNERO/dataset/{train,dev,test}.conll

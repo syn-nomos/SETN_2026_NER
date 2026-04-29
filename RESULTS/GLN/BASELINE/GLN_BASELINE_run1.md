@@ -77,10 +77,10 @@
 
 | #   | Embedding (short)    | Raw Path / ID                          |
 |-----|----------------------|----------------------------------------|
-| 0   | **GreekBERT** | `AIAI/GREEKLEGALNERV2/GreekBERT/greek_legal_ner/nlpaueb/bert-base-greek-uncased-v1/results_after_training_only_on_language_with_id__el/seed_1` |
-| 1   | **GreekLegalRoBERTa** | `AIAI/GREEKLEGALNERV2/GreekLegalRoBERTa/greek_legal_ner/joelito/legal-greek-roberta-base/results_after_training_only_on_language_with_id__el/seed_1` |
-| 2   | **cc.el.300.vec** | `AIAI/GREEKLEGALNERV2/cc.el.300.vec` |
-| 3   | **mDeBERTa-v3** | `AIAI/GREEKLEGALNERV2/mdeberta-v3-base/seed_1` |
+| 0   | **GreekBERT** | `DATASETS/GREEKLEGALNERV2/GreekBERT/greek_legal_ner/nlpaueb/bert-base-greek-uncased-v1/results_after_training_only_on_language_with_id__el/seed_1` |
+| 1   | **GreekLegalRoBERTa** | `DATASETS/GREEKLEGALNERV2/GreekLegalRoBERTa/greek_legal_ner/joelito/legal-greek-roberta-base/results_after_training_only_on_language_with_id__el/seed_1` |
+| 2   | **cc.el.300.vec** | `DATASETS/GREEKLEGALNERV2/cc.el.300.vec` |
+| 3   | **mDeBERTa-v3** | `DATASETS/GREEKLEGALNERV2/mdeberta-v3-base/seed_1` |
 | 4   | **FastCharEmbeddings** | `Char` |
 | 5   | **BPEmb** | `bpe-el-100000-300` |
 

@@ -80,8 +80,8 @@
 
 | #   | Embedding (short)    | Raw Path / ID                          |
 |-----|----------------------|----------------------------------------|
-| 0   | **InLegalBERT** | `AIAI/InLNER/InLegalBERT/greek_legal_ner/law-ai/InLegalBERT/results_after_training_only_on_language_with_id__en/seed_1` |
-| 1   | **FastText** | `AIAI/InLNER/Non_Contexual_embeddings/fasttext-wiki-news-subwords-300.model` |
+| 0   | **InLegalBERT** | `DATASETS/InLNER/InLegalBERT/greek_legal_ner/law-ai/InLegalBERT/results_after_training_only_on_language_with_id__en/seed_1` |
+| 1   | **FastText** | `DATASETS/InLNER/Non_Contexual_embeddings/fasttext-wiki-news-subwords-300.model` |
 | 2   | **FastCharEmbeddings** | `Char` |
 | 3   | **BPEmb** | `bpe-en-100000-300` |
 

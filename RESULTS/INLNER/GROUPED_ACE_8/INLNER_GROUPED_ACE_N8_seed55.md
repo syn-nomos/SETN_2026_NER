@@ -80,10 +80,10 @@
 
 | #   | Embedding (short)    | Raw Path / ID                          |
 |-----|----------------------|----------------------------------------|
-| 0   | **InLegalBERT** | `AIAI/InLNER/InLegalBERT/greek_legal_ner/law-ai/InLegalBERT/results_after_training_only_on_language_with_id__en/seed_1` |
-| 1   | **LegalBERT** | `AIAI/InLNER/LegalBERT/greek_legal_ner/nlpaueb/legal-bert-base-uncased/results_after_training_only_on_language_with_id__en/seed_1` |
-| 2   | **FastText** | `AIAI/InLNER/Non_Contexual_embeddings/fasttext-wiki-news-subwords-300.model` |
-| 3   | **mDeBERTa-v3** | `AIAI/InLNER/mDeBERTa/greek_legal_ner/microsoft/mdeberta-v3-base/seed_1/checkpoint-8046` |
+| 0   | **InLegalBERT** | `DATASETS/InLNER/InLegalBERT/greek_legal_ner/law-ai/InLegalBERT/results_after_training_only_on_language_with_id__en/seed_1` |
+| 1   | **LegalBERT** | `DATASETS/InLNER/LegalBERT/greek_legal_ner/nlpaueb/legal-bert-base-uncased/results_after_training_only_on_language_with_id__en/seed_1` |
+| 2   | **FastText** | `DATASETS/InLNER/Non_Contexual_embeddings/fasttext-wiki-news-subwords-300.model` |
+| 3   | **mDeBERTa-v3** | `DATASETS/InLNER/mDeBERTa/greek_legal_ner/microsoft/mdeberta-v3-base/seed_1/checkpoint-8046` |
 | 4   | **FastCharEmbeddings** | `Char` |
 | 5   | **BPEmb** | `bpe-en-100000-300` |
 

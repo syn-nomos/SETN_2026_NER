@@ -3,7 +3,7 @@ from huggingface_hub import hf_hub_download
 import os
 import sys
 
-dest = r'D:\Το Drive μου\AEGEAN UNIVERSITY\LEGAL DOCUMENTS ARCHIVE\ΠΑΙΓΑΙΟΥ\CODE\03_ML_MODELS\NER_MODELS\ACE\AIAI\InLNER\Non_Contexual_embeddings'
+dest = r'D:\Το Drive μου\AEGEAN UNIVERSITY\LEGAL DOCUMENTS ARCHIVE\ΠΑΙΓΑΙΟΥ\CODE\03_ML_MODELS\NER_MODELS\ACE\DATASETS\InLNER\Non_Contexual_embeddings'
 
 downloads = [
     # GloVe (~501 MB total)

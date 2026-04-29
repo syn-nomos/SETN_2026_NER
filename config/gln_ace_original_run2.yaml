@@ -3,7 +3,7 @@ targets: ner
 ner:
   Corpus: ColumnCorpus-1
   ColumnCorpus-1:
-    data_folder: AIAI/GREEKLEGALNERV2
+    data_folder: DATASETS/GREEKLEGALNERV2
     column_format:
       0: text
       1: ner
@@ -30,26 +30,26 @@ model:
 embeddings:
   # === Contextual Transformer Embeddings (3) ===
   TransformerWordEmbeddings-0:
-    model: AIAI/GREEKLEGALNERV2/GreekLegalRoBERTa/greek_legal_ner/joelito/legal-greek-roberta-base/results_after_training_only_on_language_with_id__el/seed_1
+    model: DATASETS/GREEKLEGALNERV2/GreekLegalRoBERTa/greek_legal_ner/joelito/legal-greek-roberta-base/results_after_training_only_on_language_with_id__el/seed_1
     layers: "-1"
     pooling_operation: "first"
     use_scalar_mix: false
     fine_tune: false
   TransformerWordEmbeddings-1:
-    model: AIAI/GREEKLEGALNERV2/GreekBERT/greek_legal_ner/nlpaueb/bert-base-greek-uncased-v1/results_after_training_only_on_language_with_id__el/seed_1
+    model: DATASETS/GREEKLEGALNERV2/GreekBERT/greek_legal_ner/nlpaueb/bert-base-greek-uncased-v1/results_after_training_only_on_language_with_id__el/seed_1
     layers: "-1"
     pooling_operation: "first"
     use_scalar_mix: false
     fine_tune: false
   TransformerWordEmbeddings-2:
-    model: AIAI/GREEKLEGALNERV2/mdeberta-v3-base/seed_1
+    model: DATASETS/GREEKLEGALNERV2/mdeberta-v3-base/seed_1
     layers: "-1"
     pooling_operation: "first"
     use_scalar_mix: false
     fine_tune: false
   # === Non-Contextual Embeddings (3) ===
   WordEmbeddings-0:
-    embeddings: AIAI/GREEKLEGALNERV2/cc.el.300.vec
+    embeddings: DATASETS/GREEKLEGALNERV2/cc.el.300.vec
   BytePairEmbeddings-0:
     language: el
     dim: 300

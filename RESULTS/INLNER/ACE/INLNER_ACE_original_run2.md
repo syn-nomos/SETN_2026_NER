@@ -77,12 +77,12 @@
 
 | #   | Embedding (short)    | Raw Path / ID                          |
 |-----|----------------------|----------------------------------------|
-| 0   | **DistilBERT** | `AIAI/InLNER/DistilBERT/greek_legal_ner/distilbert-base-multilingual-cased/seed_1` |
-| 1   | **FastText** | `AIAI/InLNER/Non_Contexual_embeddings/fasttext-wiki-news-subwords-300.model` |
-| 2   | **GloVe** | `AIAI/InLNER/Non_Contexual_embeddings/glove-wiki-gigaword-300.model` |
-| 3   | **Word2Vec** | `AIAI/InLNER/Non_Contexual_embeddings/word2vec-google-news-300.model` |
-| 4   | **XLM-R-Base** | `AIAI/InLNER/XLM-R-Base/greek_legal_ner/xlm-roberta-base/seed_1` |
-| 5   | **mDeBERTa-v3** | `AIAI/InLNER/mDeBERTa/greek_legal_ner/microsoft/mdeberta-v3-base/seed_1/checkpoint-9387` |
+| 0   | **DistilBERT** | `DATASETS/InLNER/DistilBERT/greek_legal_ner/distilbert-base-multilingual-cased/seed_1` |
+| 1   | **FastText** | `DATASETS/InLNER/Non_Contexual_embeddings/fasttext-wiki-news-subwords-300.model` |
+| 2   | **GloVe** | `DATASETS/InLNER/Non_Contexual_embeddings/glove-wiki-gigaword-300.model` |
+| 3   | **Word2Vec** | `DATASETS/InLNER/Non_Contexual_embeddings/word2vec-google-news-300.model` |
+| 4   | **XLM-R-Base** | `DATASETS/InLNER/XLM-R-Base/greek_legal_ner/xlm-roberta-base/seed_1` |
+| 5   | **mDeBERTa-v3** | `DATASETS/InLNER/mDeBERTa/greek_legal_ner/microsoft/mdeberta-v3-base/seed_1/checkpoint-9387` |
 
 ---
 

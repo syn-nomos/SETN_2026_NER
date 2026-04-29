@@ -3,7 +3,7 @@ targets: ner
 ner:
   Corpus: ColumnCorpus-1
   ColumnCorpus-1:
-    data_folder: AIAI/InLNER/dataset
+    data_folder: DATASETS/InLNER/dataset
     column_format:
       0: text
       1: ner
@@ -33,21 +33,21 @@ model:
 embeddings:
   # === Contextual Transformer Embeddings (3) ===
   TransformerWordEmbeddings-0:
-    model: AIAI/InLNER/mDeBERTa/greek_legal_ner/microsoft/mdeberta-v3-base/seed_1/checkpoint-8046
+    model: DATASETS/InLNER/mDeBERTa/greek_legal_ner/microsoft/mdeberta-v3-base/seed_1/checkpoint-8046
     layers: "-1"
     pooling_operation: "first"
     use_scalar_mix: false
     fine_tune: false
     use_fast: false
   TransformerWordEmbeddings-1:
-    model: AIAI/InLNER/LegalBERT/greek_legal_ner/nlpaueb/legal-bert-base-uncased/results_after_training_only_on_language_with_id__en/seed_1
+    model: DATASETS/InLNER/LegalBERT/greek_legal_ner/nlpaueb/legal-bert-base-uncased/results_after_training_only_on_language_with_id__en/seed_1
     layers: "-1"
     pooling_operation: "first"
     use_scalar_mix: false
     fine_tune: false
     use_fast: false
   TransformerWordEmbeddings-2:
-    model: AIAI/InLNER/InLegalBERT/greek_legal_ner/law-ai/InLegalBERT/results_after_training_only_on_language_with_id__en/seed_1
+    model: DATASETS/InLNER/InLegalBERT/greek_legal_ner/law-ai/InLegalBERT/results_after_training_only_on_language_with_id__en/seed_1
     layers: "-1"
     pooling_operation: "first"
     use_scalar_mix: false
@@ -55,7 +55,7 @@ embeddings:
     use_fast: false
   # === Non-Contextual Embeddings (3) ===
   WordEmbeddings-0:
-    embeddings: AIAI/InLNER/Non_Contexual_embeddings/fasttext-wiki-news-subwords-300.model
+    embeddings: DATASETS/InLNER/Non_Contexual_embeddings/fasttext-wiki-news-subwords-300.model
   BytePairEmbeddings-0:
     language: en
     dim: 300

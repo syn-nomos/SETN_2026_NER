@@ -33,10 +33,10 @@
 
 | #   | Embedding (short)    | Raw Path / ID                          |
 |-----|----------------------|----------------------------------------|
-| 0   | **FastText** | `AIAI/LegalNERO/cc.ro.300.vec` |
-| 1   | **LegalRoBERTa** | `AIAI/LegalNERO/logs/LegalRomanianRoBERTa/greek_legal_ner/joelito/legal-romanian-roberta-base/results_after_training_only_on_language_with_id__ro/seed_1/checkpoint-2832` |
-| 2   | **RomanianBERT** | `AIAI/LegalNERO/logs/RomanianBERT/greek_legal_ner/dumitrescustefan/bert-base-romanian-cased-v1/results_after_training_only_on_language_with_id__all/seed_1/checkpoint-2832` |
-| 3   | **mDeBERTa-v3** | `AIAI/LegalNERO/logs/mDeBERTa/greek_legal_ner/microsoft/mdeberta-v3-base/seed_1/checkpoint-2832` |
+| 0   | **FastText** | `DATASETS/LegalNERO/cc.ro.300.vec` |
+| 1   | **LegalRoBERTa** | `DATASETS/LegalNERO/logs/LegalRomanianRoBERTa/greek_legal_ner/joelito/legal-romanian-roberta-base/results_after_training_only_on_language_with_id__ro/seed_1/checkpoint-2832` |
+| 2   | **RomanianBERT** | `DATASETS/LegalNERO/logs/RomanianBERT/greek_legal_ner/dumitrescustefan/bert-base-romanian-cased-v1/results_after_training_only_on_language_with_id__all/seed_1/checkpoint-2832` |
+| 3   | **mDeBERTa-v3** | `DATASETS/LegalNERO/logs/mDeBERTa/greek_legal_ner/microsoft/mdeberta-v3-base/seed_1/checkpoint-2832` |
 | 4   | **FastCharEmbeddings** | `Char` |
 | 5   | **BPEmb** | `bpe-ro-100000-300` |
 
