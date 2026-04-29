@@ -1,0 +1,31 @@
+# ACE NER - Requirements (matching LegalUni env)
+# Python 3.11 + PyTorch 2.5.1 + CUDA 12.1
+accelerate==0.21.0
+bpemb==0.3.6
+conllu==4.5.3
+Deprecated==1.2.18
+gensim==4.3.3
+h5py==3.14.0
+huggingface-hub==0.26.5
+matplotlib==3.10.5
+numpy==1.26.0
+pytorch-crf==0.7.2
+pytorch-transformers==1.2.0
+regex==2024.11.6
+requests==2.32.3
+safetensors==0.4.5
+scikit-learn==1.7.1
+scipy==1.13.1
+segtok==1.5.11
+sentencepiece==0.2.0
+seqeval==1.2.2
+spacy==3.8.11
+tabulate==0.9.0
+tokenizers==0.15.2
+transformers==4.37.2
+Wikipedia-API==0.8.1
+pyhocon==0.3.60
+pyyaml==6.0.2
+overrides==7.7.0
+nltk
+ipython

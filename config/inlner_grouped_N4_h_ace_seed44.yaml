@@ -1,0 +1,76 @@
+targets: ner
+
+ner:
+  Corpus: ColumnCorpus-1
+  ColumnCorpus-1:
+    data_folder: AIAI/InLNER/dataset
+    column_format:
+      0: text
+      1: ner
+    tag_to_bioes: ner
+  tag_dictionary: resources/taggers/inlner_grouped_N4_h_ace_seed44/tags.pkl
+
+target_dir: resources/taggers/
+model_name: inlner_grouped_N4_h_ace_seed44
+
+Controller:
+  model_structure: null
+  num_groups: 4
+  group_mode: equal
+  group_seed: 44
+
+model:
+  FastSequenceTagger:
+    hidden_size: 256
+    use_crf: true
+    use_rnn: true
+    rnn_layers: 1
+    dropout: 0.0
+    word_dropout: 0.05
+    locked_dropout: 0.5
+    sentence_loss: true
+
+embeddings:
+  # === Top-4 embeddings from N8 seed66 best action (ep6) ===
+  TransformerWordEmbeddings-0:
+    model: AIAI/InLNER/InLegalBERT/greek_legal_ner/law-ai/InLegalBERT/results_after_training_only_on_language_with_id__en/seed_1
+    layers: "-1"
+    pooling_operation: "first"
+    use_scalar_mix: false
+    fine_tune: false
+    use_fast: false
+  WordEmbeddings-0:
+    embeddings: AIAI/InLNER/Non_Contexual_embeddings/fasttext-wiki-news-subwords-300.model
+  BytePairEmbeddings-0:
+    language: en
+    dim: 300
+    syllables: 100000
+  FastCharacterEmbeddings:
+    char_embedding_dim: 25
+    hidden_size_char: 25
+
+interpolation: 0.5
+
+trainer: ReinforcementTrainer
+ReinforcementTrainer:
+  controller_learning_rate: 0.4
+  controller_optimizer: Adam
+  distill_mode: false
+  optimizer: SGD
+  sentence_level_batch: true
+
+train:
+  max_episodes: 35
+  max_epochs: 150
+  seed: 44
+  monitor_test: false
+  mini_batch_size: 8
+  learning_rate: 0.1
+  min_learning_rate: 0.0001
+  max_epochs_without_improvement: 10
+  patience: 5
+  save_final_model: true
+  continue_training: false
+  train_with_dev: false
+  true_reshuffle: false
+  discount: 0.5

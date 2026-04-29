@@ -1,0 +1,84 @@
+targets: ner
+
+ner:
+  Corpus: ColumnCorpus-1
+  ColumnCorpus-1:
+    data_folder: AIAI/LegalNERO/dataset
+    column_format:
+      0: text
+      1: ner
+    tag_to_bioes: ner
+  tag_dictionary: resources/taggers/legalnero_grouped_N4_h_ace_seed66/tags.pkl
+
+target_dir: resources/taggers/
+model_name: legalnero_grouped_N4_h_ace_seed66
+
+Controller:
+  model_structure: null
+  num_groups: 4
+  group_mode: equal
+  group_seed: 66
+
+model:
+  FastSequenceTagger:
+    hidden_size: 256
+    use_crf: true
+    use_rnn: true
+    rnn_layers: 1
+    dropout: 0.0
+    word_dropout: 0.05
+    locked_dropout: 0.5
+    sentence_loss: true
+
+embeddings:
+  # === Top-4 embeddings from N8 best action ===
+  TransformerWordEmbeddings-0:
+    model: AIAI/LegalNERO/logs/LegalRomanianRoBERTa/greek_legal_ner/joelito/legal-romanian-roberta-base/results_after_training_only_on_language_with_id__ro/seed_1/checkpoint-2832
+    layers: "-1"
+    pooling_operation: "first"
+    use_scalar_mix: false
+    fine_tune: false
+    use_fast: false
+  TransformerWordEmbeddings-1:
+    model: AIAI/LegalNERO/logs/mDeBERTa/greek_legal_ner/microsoft/mdeberta-v3-base/seed_1/checkpoint-2832
+    layers: "-1"
+    pooling_operation: "first"
+    use_scalar_mix: false
+    fine_tune: false
+    use_fast: false
+  TransformerWordEmbeddings-2:
+    model: AIAI/LegalNERO/logs/RomanianBERT/greek_legal_ner/dumitrescustefan/bert-base-romanian-cased-v1/results_after_training_only_on_language_with_id__all/seed_1/checkpoint-2832
+    layers: "-1"
+    pooling_operation: "first"
+    use_scalar_mix: false
+    fine_tune: false
+    use_fast: false
+  FastCharacterEmbeddings:
+    char_embedding_dim: 25
+    hidden_size_char: 25
+
+interpolation: 0.5
+
+trainer: ReinforcementTrainer
+ReinforcementTrainer:
+  controller_learning_rate: 0.4
+  controller_optimizer: Adam
+  distill_mode: false
+  optimizer: SGD
+  sentence_level_batch: true
+
+train:
+  max_episodes: 35
+  max_epochs: 150
+  seed: 66
+  monitor_test: false
+  mini_batch_size: 8
+  learning_rate: 0.1
+  min_learning_rate: 0.0001
+  max_epochs_without_improvement: 10
+  patience: 5
+  save_final_model: true
+  continue_training: false
+  train_with_dev: false
+  true_reshuffle: false
+  discount: 0.5

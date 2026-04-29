@@ -1,0 +1,29 @@
+# Heavy artefacts — keep out of git
+AIAI/
+resources/
+memory_elNER/
+models/
+results/
+logs/
+nohup.out
+
+# Logs and binary model artefacts
+*.log
+*.pt
+*.bin
+*.hdf5
+*.vec
+*.pkl
+*.npy
+*.tar
+*.gz
+best-model*
+final-model*
+checkpoint*
+
+# Python / editor
+__pycache__/
+*.pyc
+.vscode/
+.idea/
+.env

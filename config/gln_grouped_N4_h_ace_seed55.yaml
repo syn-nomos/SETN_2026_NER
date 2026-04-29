@@ -1,0 +1,86 @@
+targets: ner
+
+ner:
+  Corpus: ColumnCorpus-1
+  ColumnCorpus-1:
+    data_folder: AIAI/GREEKLEGALNERV2
+    column_format:
+      0: text
+      1: ner
+    tag_to_bioes: ner
+  tag_dictionary: resources/taggers/gln_grouped_N4_h_ace_seed55/tags.pkl
+
+target_dir: resources/taggers/
+model_name: gln_grouped_N4_h_ace_seed55
+
+Controller:
+  model_structure: null
+  num_groups: 4
+  group_mode: equal
+  group_seed: 55
+
+model:
+  FastSequenceTagger:
+    hidden_size: 256
+    use_crf: true
+    use_rnn: true
+    rnn_layers: 1
+    dropout: 0.0          # original: no dropout
+    word_dropout: 0.05
+    locked_dropout: 0.5
+    sentence_loss: true
+
+embeddings:
+  # === Top-4 embeddings from N4 analysis (seed44+seed66): GreekBERT, GreekLegalRoBERTa, mDeBERTa-v3, FastChar ===
+  # FastText (cc.el.300.vec) excluded: 35% freq in seed66, excluded from best action
+  # BPEmb excluded: 50% freq in seed66, excluded from best action
+  TransformerWordEmbeddings-0:
+    model: AIAI/GREEKLEGALNERV2/GreekBERT/greek_legal_ner/nlpaueb/bert-base-greek-uncased-v1/results_after_training_only_on_language_with_id__el/seed_1
+    layers: "-1"
+    pooling_operation: "first"
+    use_scalar_mix: false
+    fine_tune: false
+    use_fast: false
+  TransformerWordEmbeddings-1:
+    model: AIAI/GREEKLEGALNERV2/GreekLegalRoBERTa/greek_legal_ner/joelito/legal-greek-roberta-base/results_after_training_only_on_language_with_id__el/seed_1
+    layers: "-1"
+    pooling_operation: "first"
+    use_scalar_mix: false
+    fine_tune: false
+    use_fast: false
+  TransformerWordEmbeddings-2:
+    model: AIAI/GREEKLEGALNERV2/mdeberta-v3-base/seed_1
+    layers: "-1"
+    pooling_operation: "first"
+    use_scalar_mix: false
+    fine_tune: false
+    use_fast: false
+  FastCharacterEmbeddings:
+    char_embedding_dim: 25
+    hidden_size_char: 25
+
+interpolation: 0.5
+
+trainer: ReinforcementTrainer
+ReinforcementTrainer:
+  controller_learning_rate: 0.4   # original
+  controller_optimizer: Adam       # original
+  distill_mode: false
+  optimizer: SGD
+  sentence_level_batch: true
+
+train:
+  max_episodes: 35
+  max_epochs: 150
+  seed: 55
+  monitor_test: true
+  mini_batch_size: 8               # original — stable reward signal
+  learning_rate: 0.1
+  min_learning_rate: 0.0001
+  max_epochs_without_improvement: 10  # original
+  patience: 5
+  save_final_model: true
+  continue_training: false
+  train_with_dev: false
+  true_reshuffle: false
+  discount: 0.5

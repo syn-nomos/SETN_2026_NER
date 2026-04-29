@@ -1,0 +1,64 @@
+% =============================================================================
+%  Selection-stability table across seeds (single-column).
+%  Quantifies how consistent the controller's choices are at three granularities:
+%    \emph{family} level (which of the 6 embedding types are used),
+%    \emph{block} level (which chunk-INDICES within each embedding), and
+%    \emph{dim} level (which actual DIMENSIONS, after replaying the
+%    per-seed random permutation that defines the chunks).
+% =============================================================================
+\begin{table}[t]
+\centering
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.05}
+\caption{\textbf{Selection stability across seeds.} For each method we report,
+\emph{across 3 seeds}, the mean ($\pm$ std) of \textbf{Active Dims} and
+\textbf{Active Blocks}, and three Jaccard agreement scores:
+$J_{\text{fam}}$ over the set of \emph{embedding families} kept by each seed
+(out of 6 candidates, or 4 for H-ACE);
+$J_{\text{blk}}$ over the set of \emph{block indices} selected;
+and $J_{\text{dim}}$ over the \emph{actual selected dimensions}, obtained by
+replaying the per-seed random permutation that splits each embedding into
+blocks. The last column ($\Delta$) is the gap between $J_{\text{dim}}$ and the
+expected Jaccard of two uniformly random subsets of the same size; values
+near zero indicate that the controller's dimension-level selection is
+\emph{statistically indistinguishable} from random, evidencing
+massive functional redundancy at the sub-embedding level.}
+\label{tab:selection_stability}
+\footnotesize
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}llr@{\,}ccccccl@{}}
+\toprule
+\textbf{Dataset} & \textbf{Method}
+ & \multicolumn{2}{c}{\textbf{Active Dims}}
+ & \textbf{Blk}
+ & $J_{\text{fam}}$
+ & $J_{\text{blk}}$
+ & $J_{\text{dim}}$
+ & $\Delta$
+ & \textbf{Volatile} \\
+\midrule
+
+\multirow{3}{*}{GLN}
+ & G-ACE\,(4) & 1032 & {\scriptsize$\pm$446} & 8.7/24  & 0.64          & 0.20 & 0.21 & $-0.01$ & FT, BPE, mDeB. \\
+ & G-ACE\,(8) & 1352 & {\scriptsize$\pm$238} & 22.0/48 & \textbf{1.00} & 0.27 & 0.26 & $\phantom{-}0.00$ & --- \\
+ & H-ACE\,(4) & 1309 & {\scriptsize$\pm$449} & 9.0/16  & \textbf{1.00} & 0.43 & 0.34 & $\phantom{-}0.00$ & --- \\
+\midrule
+
+\multirow{3}{*}{InLNER}
+ & G-ACE\,(4) & 1577 & {\scriptsize$\pm$607} & 13.3/24 & 0.89          & 0.42 & 0.33 & $-0.01$ & LegalBERT \\
+ & G-ACE\,(8) & 1361 & {\scriptsize$\pm$317} & 24.0/48 & \textbf{1.00} & 0.28 & 0.30 & $-0.01$ & --- \\
+ & H-ACE\,(4) &  876 & {\scriptsize$\pm$387} & 11.3/16 & \textbf{1.00} & 0.59 & 0.51 & $+0.01$ & --- \\
+\midrule
+
+\multirow{3}{*}{LegalNERO}
+ & G-ACE\,(4) & 1141 & {\scriptsize$\pm$299} & 9.3/24  & 0.78          & 0.25 & 0.28 & $+0.01$ & FT, mDeB. \\
+ & G-ACE\,(8) & 1259 & {\scriptsize$\pm$111} & 20.7/48 & \textbf{1.00} & 0.32 & 0.27 & $\phantom{-}0.00$ & --- \\
+ & H-ACE\,(4) & 1129 & {\scriptsize$\pm$234} & 9.0/16  & \textbf{1.00} & 0.47 & 0.39 & $\phantom{-}0.00$ & --- \\
+\bottomrule
+\end{tabular}}
+\vspace{2pt}\\
+{\scriptsize ``Volatile'' = embedding families selected in some but not all seeds.
+$\Delta = J_{\text{dim}} - J_{\text{rnd}}$, where $J_{\text{rnd}}$ is the expected
+Jaccard of two uniformly random dimension subsets of the same cardinality.
+\emph{FT}=FastText, \emph{BPE}=BPEmb, \emph{mDeB.}=mDeBERTa-v3.}
+\end{table}

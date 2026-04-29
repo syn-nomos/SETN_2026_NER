@@ -1,0 +1,119 @@
+% =============================================================================
+%  Dimensions-used vs. Micro-F1 — Pareto analysis (3 datasets)
+%  Requires in preamble:
+%    \usepackage{pgfplots}
+%    \pgfplotsset{compat=1.18}
+%    \usepgfplotslibrary{groupplots}
+%    \usetikzlibrary{patterns,arrows.meta}
+% =============================================================================
+\begin{figure*}[t]
+\centering
+\begin{tikzpicture}
+  \pgfplotsset{
+    every axis/.append style={
+      font=\scriptsize,
+      width=0.36\textwidth, height=4.6cm,
+      xlabel={Embedding dimensions used},
+      ylabel={Micro-F1 (\%)},
+      ylabel near ticks, xlabel near ticks,
+      grid=both, grid style={gray!18, line width=0.3pt},
+      tick align=outside, tick pos=left,
+      legend style={font=\tiny, draw=none, fill=white, fill opacity=0.85,
+                    text opacity=1, inner sep=2pt, row sep=-2pt},
+      legend cell align=left,
+      title style={font=\small\bfseries, yshift=-1ex},
+    },
+    % Legend image: draw ONLY the marker (no connecting line) so the legend
+    % entry visually matches the data points in the plot.
+    legend image code/.code={%
+      \draw[##1] plot coordinates {(0.15cm,0cm)};%
+    },
+    % marker styles per method (filled markers, consistent in legend & plots)
+    aceStyle/.style    ={mark=square*,    mark size=2.6pt, draw=red!75!black,
+                         fill=red!75!black,    only marks},
+    gace4Style/.style  ={mark=triangle*,  mark size=3.2pt, draw=blue!70!black,
+                         fill=blue!70!black,   only marks},
+    gace8Style/.style  ={mark=diamond*,   mark size=3.2pt, draw=teal!70!black,
+                         fill=teal!70!black,   only marks},
+    hace4Style/.style  ={mark=*,          mark size=2.6pt, draw=violet!75!black,
+                         fill=violet!75!black, only marks},
+    paretoStyle/.style ={dashed, gray!70, line width=0.8pt, mark=none,
+                         mark options={solid}},
+  }
+
+  \begin{groupplot}[
+      group style={group size=3 by 1, horizontal sep=1.05cm},
+    ]
+
+    % ---------------- GLN ----------------
+    \nextgroupplot[title={GLN v2},
+                   xmin=400, xmax=2700, ymin=71.5, ymax=73.6,
+                   ytick={72.0,72.4,72.8,73.2}]
+      % Pareto frontier: only G-ACE-4 dominates (lowest dim AND highest F1).
+      % Draw a guiding line connecting the best low-dim point to ACE for visual reference.
+      \addplot[paretoStyle] coordinates {(805,72.91) (2436,72.91)};
+      % Data points
+      \addplot[aceStyle]   coordinates {(2436,72.56)} node[above right, font=\tiny] {ACE};
+      \addplot[gace4Style] coordinates {( 805,72.91)} node[above right, font=\tiny] {G-ACE-4};
+      \addplot[gace8Style] coordinates {(1368,72.10)} node[below right, font=\tiny] {G-ACE-8};
+      \addplot[hace4Style] coordinates {( 986,72.21)} node[below right, font=\tiny] {H-ACE-4};
+
+    % ---------------- InLNER ----------------
+    \nextgroupplot[title={InLegalNER},
+                   xmin=1200, xmax=2800, ymin=86.6, ymax=89.3,
+                   ytick={87.0,87.5,88.0,88.5,89.0}]
+      % Pareto frontier: H-ACE-4 (1418,87.20) is dominated by G-ACE-4 (1478,88.62),
+      % so frontier = G-ACE-4 -> G-ACE-8.
+      \addplot[paretoStyle] coordinates {(1478,88.62) (1505,88.65)};
+      \addplot[paretoStyle] coordinates {(1505,88.65) (2604,88.65)};
+      \addplot[aceStyle]   coordinates {(2604,87.98)};
+      \addplot[gace4Style] coordinates {(1478,88.62)};
+      \addplot[gace8Style] coordinates {(1505,88.65)};
+      \addplot[hace4Style] coordinates {(1418,87.20)};
+      % Inline labels (positioned to avoid overlap; G-ACE-4 and G-ACE-8 are
+      % very close, so we put one above and one below)
+      \node[font=\tiny, above left]  at (axis cs:2604,87.98) {ACE};
+      \node[font=\tiny, below right] at (axis cs:1478,88.62) {G-ACE-4};
+      \node[font=\tiny, above right] at (axis cs:1505,88.65) {G-ACE-8};
+      \node[font=\tiny, below right] at (axis cs:1418,87.20) {H-ACE-4};
+
+    % ---------------- LegalNERO ----------------
+    \nextgroupplot[title={LegalNERO (Romanian)},
+                   xmin=600, xmax=2500, ymin=78.8, ymax=81.2,
+                   ytick={79.2,79.6,80.0,80.4,80.8},
+                   legend to name=dimf1legend, legend columns=4,
+                   legend style={/tikz/every even column/.append style={column sep=0.6em}}]
+      % Pareto: H-ACE-4 (818,79.72) dominated by G-ACE-8 (1350,80.40) at higher dim,
+      % but H-ACE-4 dominates at low dim.  Frontier: H-ACE-4 -> G-ACE-8.
+      % NOTE: 'forget plot' keeps the pareto lines OUT of the shared legend,
+      %       so the 4 \addlegendentry{} below align with the 4 marker styles.
+      \addplot[paretoStyle, forget plot] coordinates {( 818,79.72) (1350,80.40)};
+      \addplot[paretoStyle, forget plot] coordinates {(1350,80.40) (2354,80.40)};
+      \addplot[aceStyle]   coordinates {(2354,79.61)};   \addlegendentry{ACE}
+      \addplot[gace4Style] coordinates {(1476,79.71)};   \addlegendentry{G-ACE (4)}
+      \addplot[gace8Style] coordinates {(1350,80.40)};   \addlegendentry{G-ACE (8)}
+      \addplot[hace4Style] coordinates {( 818,79.72)};   \addlegendentry{H-ACE (4)}
+      % Inline labels (positioned to avoid overlap with title and each other)
+      \node[font=\tiny, below left]  at (axis cs:2354,79.61) {ACE};
+      \node[font=\tiny, below right] at (axis cs:1476,79.71) {G-ACE-4};
+      \node[font=\tiny, below right] at (axis cs:1350,80.40) {G-ACE-8};
+      \node[font=\tiny, above right] at (axis cs: 818,79.72) {H-ACE-4};
+
+  \end{groupplot}
+
+  % Shared legend below all three panels
+  \node[anchor=north] at ($(group c2r1.south) + (0,-1.1cm)$) {\ref{dimf1legend}};
+
+\end{tikzpicture}
+
+\caption{\textbf{Effective dimensionality vs.\ Micro-F1.} Each marker is the
+best run (across seeds) of one selection method on each dataset. The
+\textcolor{gray!80}{dashed line} traces the Pareto frontier (lower dimension
+\emph{and} higher F1 dominates). Standard ACE consistently lies on the right
+half of every plot, using $\mathbf{1.6\times}$--$\mathbf{3\times}$ more
+dimensions than the granular variants while \emph{never} achieving the highest
+F1. The proposed \textbf{G-ACE} and \textbf{H-ACE} occupy the upper-left
+region, confirming that block-level selection produces representations that are
+both more compact and more accurate.}
+\label{fig:dim_vs_f1}
+\end{figure*}

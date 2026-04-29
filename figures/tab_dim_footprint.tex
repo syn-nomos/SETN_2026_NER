@@ -1,0 +1,40 @@
+% =============================================================================
+%  Dimensionality footprint of the best run per method (single-column).
+% =============================================================================
+\begin{table}[t]
+\centering
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.05}
+\caption{\textbf{Dimensionality footprint of the best run per method.}
+``Dims'' is the total feature dimension actually fed into the BiLSTM-CRF after
+controller selection (computed via \texttt{torch.chunk} semantics over each
+embedding). ``Total'' is the dimensionality of the naïve concatenation of all
+six candidate embeddings on each dataset. The compression ratio shows that the
+proposed methods reach competitive or better F1 with a fraction of the
+features.}
+\label{tab:dim_footprint}
+\footnotesize
+\begin{tabular}{llrrrr}
+\toprule
+\textbf{Dataset} & \textbf{Method} & \textbf{Dims} & \textbf{Total} & \textbf{\%} & \textbf{Micro-F1} \\
+\midrule
+\multirow{4}{*}{GLN}
+ & ACE        & 2{,}436 & 3{,}254 & 74.9 & 72.56 \\
+ & G-ACE (4)  & \textbf{805}   & 2{,}954 & \textbf{27.3} & \textbf{72.91} \\
+ & G-ACE (8)  & 1{,}368 & 2{,}954 & 46.3 & 72.10 \\
+ & H-ACE (4)  & 986   & 2{,}954 & 33.4 & 72.21 \\
+\midrule
+\multirow{4}{*}{InLNER}
+ & ACE        & 2{,}604 & 2{,}954 & 88.2 & 87.98 \\
+ & G-ACE (4)  & 1{,}478 & 2{,}954 & 50.0 & 88.62 \\
+ & G-ACE (8)  & \textbf{1{,}505} & 2{,}954 & 50.9 & \textbf{88.65} \\
+ & H-ACE (4)  & 1{,}418 & 2{,}954 & 48.0 & 87.20 \\
+\midrule
+\multirow{4}{*}{LegalNERO}
+ & ACE        & 2{,}354 & 2{,}954 & 79.7 & 79.61 \\
+ & G-ACE (4)  & 1{,}476 & 2{,}954 & 50.0 & 79.71 \\
+ & G-ACE (8)  & 1{,}350 & 2{,}954 & 45.7 & \textbf{80.40} \\
+ & H-ACE (4)  & \textbf{818}   & 2{,}954 & \textbf{27.7} & 79.72 \\
+\bottomrule
+\end{tabular}
+\end{table}
