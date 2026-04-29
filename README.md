@@ -94,9 +94,9 @@ embedding are shared across datasets.
 
 | Slot | InLegalNER | GLNv2 | LegalNERo | Dim |
 |---|---|---|---|---:|
-| Contextual #1 | InLegalBERT | GreekBERT | LegalRoBERTa-Base | 768 |
-| Contextual #2 | LegalBERT | GreekLegalBERT | LegalRoBERTa-Large (proj.) | 768 |
-| Contextual #3 | mDeBERTa-v3 | mDeBERTa-v3 | SeNER (mDeBERTa-v3) | 768 |
+| Contextual #1 | InLegalBERT | GreekBERT | LegalRomanianRoBERTa | 768 |
+| Contextual #2 | LegalBERT | GreekLegalRoBERTa | RomanianBERT | 768 |
+| Contextual #3 | mDeBERTa-v3 | mDeBERTa-v3 | mDeBERTa-v3 | 768 |
 | FastText (CommonCrawl / Wiki-News) | en | el | ro | 300 |
 | BPEmb (forward + backward, 300 each) | en | el | ro | 600 |
 | Character embedding | trained | trained | trained | 50 |
