@@ -1,5 +1,5 @@
 # Heavy artefacts — keep out of git
-AIAI/
+# AIAI/  (dataset text files are now committed; embeddings stay out)
 resources/
 memory_elNER/
 models/

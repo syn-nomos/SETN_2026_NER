@@ -34,7 +34,7 @@ $$D = 3 \times 768 + 300 + 600 + 50 = 3{,}254 \text{ dimensions}$$
 
 ---
 
-## Headline results (Table 4 of the paper)
+## Headline results
 
 Mean ± SD over 3 seeds (44, 55, 66). Active-dim percentages are with respect to the
 $D = 3{,}254$ candidate pool.
@@ -65,15 +65,25 @@ while staying competitive with naïve concatenation.
 
 ## Datasets
 
-| Dataset | Language | Sentences | Entity classes | Source |
-|---|---|---:|---:|---|
-| **InLegalNER** | English | 9,435 | 13 | OpenNyAI |
-| **GreekLegalNER v2 (GLNv2)** | Greek | 26,002 | 8 | Anonymous repository (re-annotated v2) |
-| **LegalNERo** | Romanian | — | — | `joelniklaus/legalnero` (Hugging Face) |
+| Dataset | Lang | Sentences | Avg. tokens / sent | Avg. ents / sent | Entity classes |
+|---|---|---:|---:|---:|---|
+| **InLegalNER** | EN | 16,397 | 36.73 | 2.33 | COURT, JUDGE, LAWYER, PETITIONER, RESPONDENT, STATUTE, PROVISION, PRECEDENT, CASE_NUMBER, DATE, ORG, GPE, WITNESS, OTHER_PERSON |
+| **GLN v2** | EL | 26,002 | 35.59 | 2.61 | ORG, LEG-REFS, GPE, LOC, PUB-DOCS, DATE, PERS, FACIL |
+| **LegalNERo** | RO | 9,425 | 28.06 | 1.00 | ORG, TIME, LEGAL, LOC, PER |
 
-Pre-processed BIOES train/dev/test splits for one of the datasets are shipped under
-`data/`. The remaining datasets can be regenerated with the helpers in `_temp_scripts_/`
-(see `download_embeddings.py` and the corpus loaders in `flair/datasets.py`).
+The pre-processed BIOES splits used by the experiments are shipped under
+`AIAI/`:
+
+```
+AIAI/GREEKLEGALNERV2/{train_v2,dev_v2,test_v2}.conll
+AIAI/InLNER/dataset/{train,dev,test}.txt
+AIAI/LegalNERO/dataset/{train,dev,test}.conll
+```
+
+The paths above match the `data_folder` entries in the YAML configs.
+Pretrained embedding weights (`cc.*.vec`, BERT checkpoints, etc.) are **not**
+included in the repository — use `_temp_scripts_/download_embeddings.py` to fetch
+them locally.
 
 ---
 
@@ -111,7 +121,10 @@ embedding are shared across datasets.
 │   ├── models/                    # BiLSTM-CRF task model
 │   └── ...
 ├── algorithms/, utils/, tools/, script/, tests/
-├── data/                          # train/dev/test (BIOES) for one dataset
+├── AIAI/                          # dataset text splits (no embedding weights)
+│   ├── GREEKLEGALNERV2/{train_v2,dev_v2,test_v2}.conll
+│   ├── InLNER/dataset/{train,dev,test}.txt
+│   └── LegalNERO/dataset/{train,dev,test}.conll
 ├── _temp_scripts_/                # analysis utilities
 │   ├── compute_selection_stability.py     # Table 3 (J_fam, J_block, J_dim)
 │   ├── compute_dim_jaccard.py             # per-dim Jaccard
@@ -125,8 +138,7 @@ embedding are shared across datasets.
 │   └── scripts/generate_report.py
 ├── figures/                       # paper figures (LaTeX/TikZ sources)
 ├── notes/                         # exploratory research notes (non-paper)
-├── requirements.txt               # runtime dependencies
-├── requirements_ace.txt           # extra dependencies for ACE controller
+├── requirements.txt               # runtime dependencies (Python 3.11)
 └── README_ACE_ORIGINAL.md         # original ACE README, kept for upstream credit
 ```
 
@@ -140,7 +152,6 @@ conda create -n setn26 python=3.11 -y
 conda activate setn26
 
 pip install -r requirements.txt
-pip install -r requirements_ace.txt
 ```
 
 The vendored `flair/` directory shadows the upstream `flair` package; do not install
@@ -189,7 +200,7 @@ python _temp_scripts_/compute_selection_stability.py \
 
 ---
 
-## Hyperparameters (matches §4.3 of the paper)
+## Hyperparameters
 
 | Component | Setting |
 |---|---|
@@ -208,7 +219,7 @@ python _temp_scripts_/compute_selection_stability.py \
 
 ---
 
-## Selection stability (Table 3 of the paper)
+## Selection stability
 
 We measure how reproducible a method’s selections are across the three independent
 seeds at three granularities:
